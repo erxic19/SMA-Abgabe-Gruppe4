@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  qdrant1:
+    image: qdrant/qdrant
+    container_name: qdrant1
+    restart: unless-stopped
+    volumes:
+      - ./data/qdrant:/qdrant/storage
+      - ./shared:/data/shared
+    ports:
+      - "6333:6333"
+
+  ollama1:
+    image: ollama/ollama
+    container_name: ollama1
+    restart: unless-stopped
+    volumes:
+      - ./data/ollama:/root/.ollama
+      - ./shared:/data/shared
+    ports:
+      - "11434:11434"
+
+  n8n1:
+    image: n8nio/n8n
+    container_name: n8n1
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=securepassword
+    volumes:
+      - ./data/n8n:/home/node/.n8n
+      - ./shared:/data/shared
+
+volumes:
+  data_qdrant1:
+  data_ollama1:
+  data_n8n1:
+  shared1:

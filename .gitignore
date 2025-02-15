@@ -1,0 +1,14 @@
+# Sensible Daten
+.env
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Docker & Daten
+data/
+*.log
+shared/

@@ -1,0 +1,938 @@
+{
+  "name": "SMA-FINAL Abgabe",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -980,
+        480
+      ],
+      "id": "d08719c7-95eb-4981-bb60-3fe8fd88338f",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "77606f21-06f0-4efc-9e1f-df10c96cf970",
+              "name": "id",
+              "value": "={{$json[\"key\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "e5d22287-eecd-4e15-a279-8447df7b902d",
+              "name": "title",
+              "value": "={{ $json.links.enclosure.title }}",
+              "type": "string"
+            },
+            {
+              "id": "0e559ec7-05ec-49bc-b2db-de9a234066cd",
+              "name": "filename",
+              "value": "={{ $json.data.filename }}",
+              "type": "string"
+            },
+            {
+              "id": "b9234639-3bff-4fc1-9a7c-60f1054a38d9",
+              "name": "md5",
+              "value": "={{ $json.data.md5 }}",
+              "type": "string"
+            },
+            {
+              "id": "e737e872-c760-425c-b7ba-95d8a50a05bf",
+              "name": "dateAdded",
+              "value": "={{ $json.data.dateAdded }}",
+              "type": "string"
+            },
+            {
+              "id": "9c77b9fb-7027-4d75-bf3a-ac38bc52b3c2",
+              "name": "download",
+              "value": "={{ $json.links.enclosure.href }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -540,
+        560
+      ],
+      "id": "4f2868bc-6632-4ca6-950f-440043592c83",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "url": "https://api.zotero.org/users/[ZoteroID]/items?format=json&limit=10",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer [ZoteroAPI-Key]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -780,
+        560
+      ],
+      "id": "cde10b49-4d33-48de-8231-93cb357ccf48",
+      "name": "Zotero API Request"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4161d9d8-f887-45d0-b9f6-2fa0bf9c38b8",
+              "leftValue": "={{ $json.result.points.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -40,
+        840
+      ],
+      "id": "fc980456-7502-41a0-9a74-9bdf8a519e96",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.zotero.org/users/[ZoteroID]/items/{{ $('Edit Fields').item.json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer [ZoteroAPI-Key]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        80,
+        600
+      ],
+      "id": "f12ab8d2-0621-429d-bb56-58012306b3a5",
+      "name": "Zotero API Request1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "77606f21-06f0-4efc-9e1f-df10c96cf970",
+              "name": "id",
+              "value": "={{$json[\"key\"]}}",
+              "type": "string"
+            },
+            {
+              "id": "e5d22287-eecd-4e15-a279-8447df7b902d",
+              "name": "title",
+              "value": "={{ $json.links.enclosure.title }}",
+              "type": "string"
+            },
+            {
+              "id": "0e559ec7-05ec-49bc-b2db-de9a234066cd",
+              "name": "filename",
+              "value": "={{ $json.data.filename }}",
+              "type": "string"
+            },
+            {
+              "id": "b9234639-3bff-4fc1-9a7c-60f1054a38d9",
+              "name": "md5",
+              "value": "={{ $json.data.md5 }}",
+              "type": "string"
+            },
+            {
+              "id": "e737e872-c760-425c-b7ba-95d8a50a05bf",
+              "name": "dateAdded",
+              "value": "={{ $json.data.dateAdded }}",
+              "type": "string"
+            },
+            {
+              "id": "9c77b9fb-7027-4d75-bf3a-ac38bc52b3c2",
+              "name": "download",
+              "value": "={{ $json.links.enclosure.href }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        200,
+        820
+      ],
+      "id": "b3122a1b-5638-494a-b37f-3b01ff559d7e",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.download }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer [ZoteroAPI-Key]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        300,
+        640
+      ],
+      "id": "d2c2c31b-9770-49df-b3b7-0c11723cbeee",
+      "name": "download"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        440,
+        460
+      ],
+      "id": "6bd4832d-4bbe-425b-906a-4904237fb7d3",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "ZoteroNeu",
+          "mode": "list",
+          "cachedResultName": "ZoteroNeu"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1,
+      "position": [
+        700,
+        440
+      ],
+      "id": "0ebe3a7c-808e-445d-b4c3-05672923305d",
+      "name": "Qdrant Vector Store",
+      "credentials": {
+        "qdrantApi": {
+          "id": "Xkj1iBTUgzyeM9M6",
+          "name": "QdrantApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "name",
+                "value": "={{ $('Edit Fields1').item.json.title }}"
+              },
+              {
+                "name": "md5",
+                "value": "={{ $('download').item.json.md5 }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        820,
+        640
+      ],
+      "id": "2e3e5739-c784-4bfa-998a-3269a4ad3dbe",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "options": {
+          "batchSize": 450,
+          "stripNewLines": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        640,
+        620
+      ],
+      "id": "04afface-4703-4298-96f0-f587446e3e93",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "yYyvMKTeHA5oWNVs",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fileSelector": "/data/shared/obsidianVault/**/*.md",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        160
+      ],
+      "id": "03481483-c22b-42e3-b2b5-6b58c3a261d5",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        160
+      ],
+      "id": "098b3bd9-9b67-4a7a-a0ab-7d089c24f901",
+      "name": "auslesenObsidian"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        60,
+        260
+      ],
+      "id": "b2da567a-73e1-4fe1-bdbc-0ca94349233a",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "obsidianNeu",
+          "mode": "list",
+          "cachedResultName": "obsidianNeu"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1,
+      "position": [
+        400,
+        20
+      ],
+      "id": "627b7e03-5529-4d0f-8924-37b6b654f69c",
+      "name": "Qdrant Vector Store1",
+      "credentials": {
+        "qdrantApi": {
+          "id": "Xkj1iBTUgzyeM9M6",
+          "name": "QdrantApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "name",
+                "value": "={{ $('Read/Write Files from Disk').item.json.fileName }}"
+              },
+              {
+                "name": "md5",
+                "value": "={{ $('md5 erstellen').item.json.Digest }}"
+              }
+            ]
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        720,
+        80
+      ],
+      "id": "7d8a96f2-984c-46ed-8ee7-c15687ccfecf",
+      "name": "Default Data Loader1"
+    },
+    {
+      "parameters": {
+        "chunkSize": 400,
+        "chunkOverlap": 40,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        980,
+        280
+      ],
+      "id": "a0354ef0-b7e4-4e8a-9e14-56e2e2005782",
+      "name": "Recursive Character Text Splitter1"
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "http://host.docker.internal:6333/collections/obsidianNeu",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n  \"Content-Type\": \"application/json\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -820,
+        260
+      ],
+      "id": "676edc16-18d5-48f2-a659-d645f43958e2",
+      "name": "ObsidianCollectionDelete"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "http://host.docker.internal:6333/collections/obsidianNeu",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"vectors\": {\n    \"size\": 1536,\n    \"distance\": \"Cosine\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -600,
+        260
+      ],
+      "id": "80cbd6a4-503a-4463-b166-7ec5bb215c18",
+      "name": "ObsidianCollectionNeu"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.hashify.net/hash/md5/hex",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "input",
+              "value": "={{ $json.data }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6a34e0c9-aa67-4cb4-873e-87b91698ec67",
+      "name": "md5 erstellen"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5faad4f6-6e06-4432-929c-6d00edec6e4a",
+              "name": "data",
+              "value": "={{ $json.data }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        200,
+        100
+      ],
+      "id": "5b177f56-c73e-406b-a72a-627e63e7b8ec",
+      "name": "text extrahieren"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "008cbc68-0865-453f-8268-04203b33704e",
+              "leftValue": "={{ $json.download }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -360,
+        560
+      ],
+      "id": "aa07c523-352f-462b-8cc5-a2dc9b025ba4",
+      "name": "LeereFelderWeg"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:6333/collections/ZoteroNeu/points/scroll",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n  \"Content-Type\": \"application/json\"\n}\n",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"md5\": \"{{ $json.md5 }}\",\n  \"download\": \"{{ $json.download }}\",\n  \"title\": \"{{ $json.title }}\",\n  \"filter\": {\n    \"must\": [\n      { \"key\": \"metadata.md5\", \"match\": { \"value\": \"{{ $json.md5 }}\" } }\n    ]\n  },\n  \"limit\": 1\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -100,
+        500
+      ],
+      "id": "a264d0cb-21e7-4f04-b8c0-7f586713f964",
+      "name": "AbfrageMD5"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        400,
+        220
+      ],
+      "id": "4b0f4776-5f32-4651-b19b-014a3339035b",
+      "name": "Embeddings OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "yYyvMKTeHA5oWNVs",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chunkSize": 500,
+        "chunkOverlap": 50,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        920,
+        860
+      ],
+      "id": "2af24ddf-e1e1-491b-8311-0fcc4a29875c",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "http://host.docker.internal:6333/collections/obsidianNeu",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"vectors\": {\n    \"size\": 1536,\n    \"distance\": \"Cosine\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -640,
+        -160
+      ],
+      "id": "1ea316a7-b230-41fe-a4e2-682d97010545",
+      "name": "ObsidianCollectionNeu1"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "http://host.docker.internal:6333/collections/ZoteroNeu",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"vectors\": {\n    \"size\": 1536,\n    \"distance\": \"Cosine\"\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -900,
+        -160
+      ],
+      "id": "8d28e11e-0918-4f3c-b490-d9060234612e",
+      "name": "ObsidianCollectionNeu2"
+    },
+    {
+      "parameters": {
+        "content": "EINMALIG AUSFÜHREN!\n",
+        "height": 225,
+        "width": 509,
+        "color": 3
+      },
+      "id": "506b3ee7-3247-4821-920d-b3c5069efa87",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        -200
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Zotero API Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ObsidianCollectionDelete",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "LeereFelderWeg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zotero API Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Zotero API Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zotero API Request1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "download",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "download": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "auslesenObsidian",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "auslesenObsidian": {
+      "main": [
+        [
+          {
+            "node": "md5 erstellen",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "text extrahieren",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader1": {
+      "ai_document": [
+        [
+          {
+            "node": "Qdrant Vector Store1",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter1": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader1",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ObsidianCollectionDelete": {
+      "main": [
+        [
+          {
+            "node": "ObsidianCollectionNeu",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ObsidianCollectionNeu": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "md5 erstellen": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "text extrahieren": {
+      "main": [
+        [
+          {
+            "node": "Qdrant Vector Store1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LeereFelderWeg": {
+      "main": [
+        [
+          {
+            "node": "AbfrageMD5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AbfrageMD5": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ObsidianCollectionNeu2": {
+      "main": [
+        [
+          {
+            "node": "ObsidianCollectionNeu1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ObsidianCollectionNeu1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "5a2e7ca4-20e9-4e63-a203-7789d1d18191",
+  "meta": {
+    "instanceId": "dae7f3a056377ab98e8eba07dd01c64c813dc392d02ecd4b7b3b728c6d1e21a8"
+  },
+  "id": "zJgpfiB0IQWe1Yue",
+  "tags": []
+}
