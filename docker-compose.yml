@@ -3,7 +3,7 @@ version: '3.8'
 services:
   qdrant1:
     image: qdrant/qdrant
-    container_name: qdrant1
+    container_name: qdrant
     restart: unless-stopped
     volumes:
       - ./data/qdrant:/qdrant/storage
@@ -11,9 +11,9 @@ services:
     ports:
       - "6333:6333"
 
-  ollama1:
+  ollama:
     image: ollama/ollama
-    container_name: ollama1
+    container_name: ollama
     restart: unless-stopped
     volumes:
       - ./data/ollama:/root/.ollama
@@ -21,9 +21,9 @@ services:
     ports:
       - "11434:11434"
 
-  n8n1:
+  n8n:
     image: n8nio/n8n
-    container_name: n8n1
+    container_name: n8n
     restart: unless-stopped
     ports:
       - "5678:5678"
