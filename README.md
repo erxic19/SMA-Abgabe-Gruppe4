@@ -25,7 +25,6 @@ Für die Nutzung des Projekts müssen folgende Programme installiert sein:
 ---
 
 ## **Workflows importieren & konfigurieren**  
-Falls noch nicht vorhanden, müssen die n8n-Workflows eingerichtet werden:  
 
 1. **n8n öffnen:**  
    - Aufrufen unter: [http://localhost:5678](http://localhost:5678)  
@@ -38,7 +37,8 @@ Falls noch nicht vorhanden, müssen die n8n-Workflows eingerichtet werden:
    - Konfiguriere die notwendigen **Credentials** für:  
      - **Qdrant**  
      - **Ollama**  
-     - **Zotero**  
+     - **Zotero**
+     - **OpenAI**, falls gewünscht. 
 
 ---
 
@@ -53,7 +53,7 @@ Falls noch nicht vorhanden, müssen die n8n-Workflows eingerichtet werden:
 
 ## **Qdrant Collections einrichten**  
 1. In n8n die beiden **Nodes im roten Kasten ausführen**.  
-2. Anschließend die Nodes **löschen**, um unnötige Last zu vermeiden.  
+2. Anschließend die Nodes **löschen**.
 3. **Workflow einmal ausführen**, damit die Collections befüllt werden.  
 4. Falls ein **Batchsize-Fehler** auftritt:  
    - Dokumente **schrittweise in Zotero** hinzufügen und nacheinander embedden.  
