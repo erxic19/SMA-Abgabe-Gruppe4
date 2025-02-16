@@ -29,8 +29,6 @@ services:
       - "5678:5678"
     environment:
       - N8N_BASIC_AUTH_ACTIVE=false
-      - N8N_BASIC_AUTH_USER=admin
-      - N8N_BASIC_AUTH_PASSWORD=securepassword
     volumes:
       - ./data/n8n:/home/node/.n8n
       - ./shared:/data/shared
