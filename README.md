@@ -1,7 +1,6 @@
 # **SMA-Abgabe – Gruppe 4**  
 
-## **Voraussetzungen**  
-Für die Nutzung des Projekts müssen folgende Programme installiert sein:  
+## **Voraussetzungen**    
 - **Docker & Docker-Compose**  
 - **Git**  
 - **Python**  
