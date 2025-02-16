@@ -2,6 +2,8 @@
 
 ## Voraussetzungen
 - Docker & Docker-Compose
+- Git
+- Python
 
 ## Installation
 1. Repo klonen: `git clone https://github.com/erxic19/SMA-Abgabe-Gruppe4.git`
