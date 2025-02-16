@@ -47,7 +47,8 @@
 
 ## **Obsidian konfigurieren**  
 1. **Neuen Vault erstellen:**  
-   - Der Vault sollte sich in einem **freigegebenen Ordner** befinden, auf den **n8n/docker zugreifen kann** (dieser wird in `docker-compose.yml` erstellt).  
+   - Der Vault sollte sich in einem **freigegebenen Ordner** befinden, auf den **n8n/docker zugreifen kann**
+   - shared Ordner zwischen Docker und Lokal wird bei docker-compose erstellt
 
 2. **Pfad für Dateizugriff setzen:**  
    - In den Obsidian-Einstellungen den **Pfad für "Read/Write Files from Disk" anpassen**.  
