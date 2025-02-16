@@ -16,7 +16,7 @@
    - Erstelle eine `.env`-Datei.  
    - Nutze die Datei `.env.example` als Vorlage für die benötigten Variablen.  
 
-3. **Container starten:**  
+3. **Verzeichnis wechseln:**  
    ```bash
    cd .\SMA-Abgabe-Gruppe4\
    ```
@@ -38,9 +38,9 @@
 
 3. **Zugangsdaten setzen:**  
    - Konfiguriere die notwendigen **Credentials** für:  
-     - **Qdrant**  
-     - **Ollama**  
-     - **Zotero**
+     - **Qdrant**  (Qdrant URL: http://host.docker.internal:6333)
+     - **Ollama** (Ollama URL: http://host.docker.internal:11434) 
+     - **Zotero** 
      - **OpenAI**, falls gewünscht. 
 
 ---
