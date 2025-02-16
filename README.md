@@ -18,6 +18,10 @@
 
 3. **Container starten:**  
    ```bash
+   cd .\SMA-Abgabe-Gruppe4\
+   ```
+4. **Container starten:**  
+   ```bash
    docker-compose up -d
    ```
 
