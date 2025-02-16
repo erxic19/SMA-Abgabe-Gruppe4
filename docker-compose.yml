@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  qdrant1:
+  qdrant:
     image: qdrant/qdrant
     container_name: qdrant
     restart: unless-stopped
