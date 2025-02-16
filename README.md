@@ -1,33 +1,74 @@
-# Abgabe-SMA-Gruppe 4
+# **SMA-Abgabe – Gruppe 4**  
 
-## Voraussetzungen
-- Docker & Docker-Compose
-- Git
-- Python
+## **Voraussetzungen**  
+Für die Nutzung des Projekts müssen folgende Programme installiert sein:  
+- **Docker & Docker-Compose**  
+- **Git**  
+- **Python**  
 
-## Installation
-1. Repo klonen: `git clone https://github.com/erxic19/SMA-Abgabe-Gruppe4.git`
-2. `.env` erstellen (siehe `.env.example` für benötigte Variablen)
-3. Container starten: `docker-compose up -d`
+---
 
-## Workflows importieren + konfigurieren (falls nicht schon vorhanden)
-1. Öffne n8n unter `http://localhost:5678`
-2. Gehe zu "Workflows" → "Import" und wähle die JSON-Dateien aus `config/SMA_FINAL_Abgabe.json`.
-3. Credentials setzen (Qdrant, Ollama, Zotero)
+## **Installation**  
+1. **Repository klonen:**  
+   ```bash
+   git clone https://github.com/erxic19/SMA-Abgabe-Gruppe4.git
+   ```
+2. **Umgebungsvariablen setzen:**  
+   - Erstelle eine `.env`-Datei.  
+   - Nutze die Datei `.env.example` als Vorlage für die benötigten Variablen.  
 
-## Obsidian konfigurieren
-1. neuen Vault erstellen (In einem Ordner auf dem n8n/docker zugreifen kann (shared Ordner wird in docker-compose erstellt) 
-2. neuen Pfad im Read/Write Files from Disk setzen
+3. **Container starten:**  
+   ```bash
+   docker-compose up -d
+   ```
 
-## Qdrant Collections
-1. In n8n die beiden Nodes im Roten Kasten ausführen, danach am besten löschen.
-2. Workflow einmal ausführen lassen, damit Collections befüllt werden.
-	2.1 Falls Fehler kommt, dass Batchsize zu groß ist, Dokumente nach und nach in Zotero reinlegen und embedden. (und mit Batchsize rumprobieren)
+---
 
-## Ollama konfigurieren
-1. Mistral Model importieren
+## **Workflows importieren & konfigurieren**  
+Falls noch nicht vorhanden, müssen die n8n-Workflows eingerichtet werden:  
 
-## Chatbot einrichten
- 1. chatbot.py ausführen und Model aussuchen
- 2. Frage stellen
- 
+1. **n8n öffnen:**  
+   - Aufrufen unter: [http://localhost:5678](http://localhost:5678)  
+
+2. **Workflows importieren:**  
+   - Navigiere zu **"Workflows" → "Import"**.  
+   - Lade die Datei **`config/SMA_FINAL_Abgabe.json`** hoch.  
+
+3. **Zugangsdaten setzen:**  
+   - Konfiguriere die notwendigen **Credentials** für:  
+     - **Qdrant**  
+     - **Ollama**  
+     - **Zotero**  
+
+---
+
+## **Obsidian konfigurieren**  
+1. **Neuen Vault erstellen:**  
+   - Der Vault sollte sich in einem **freigegebenen Ordner** befinden, auf den **n8n/docker zugreifen kann** (dieser wird in `docker-compose.yml` erstellt).  
+
+2. **Pfad für Dateizugriff setzen:**  
+   - In den Obsidian-Einstellungen den **Pfad für "Read/Write Files from Disk" anpassen**.  
+
+---
+
+## **Qdrant Collections einrichten**  
+1. In n8n die beiden **Nodes im roten Kasten ausführen**.  
+2. Anschließend die Nodes **löschen**, um unnötige Last zu vermeiden.  
+3. **Workflow einmal ausführen**, damit die Collections befüllt werden.  
+4. Falls ein **Batchsize-Fehler** auftritt:  
+   - Dokumente **schrittweise in Zotero** hinzufügen und nacheinander embedden.  
+   - Die Batchsize anpassen und erneut testen.  
+
+---
+
+## **Ollama konfigurieren**  
+- **Mistral-Modell importieren**, um es für den Chatbot verfügbar zu machen.  
+
+---
+
+## **Chatbot starten**  
+1. **Script ausführen:**  
+   ```bash
+   streamlit run chatbot.py
+   ```
+2. **Modell auswählen & Frage stellen**  
