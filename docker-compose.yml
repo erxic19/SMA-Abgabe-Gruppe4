@@ -34,7 +34,7 @@ services:
       - ./shared:/data/shared
 
 volumes:
-  data_qdrant1:
-  data_ollama1:
-  data_n8n1:
-  shared1:
+  data_qdrant:
+  data_ollama:
+  data_n8n:
+  shared:
